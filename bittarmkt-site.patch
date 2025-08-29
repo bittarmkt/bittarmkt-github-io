@@ -1,0 +1,54 @@
+From 1a2b3c4d5e6f7g8h9i0 Mon Sep 17 00:00:00 2001
+From: Gabriel Bittar <you@example.com>
+Date: Fri, 29 Aug 2025 14:00:00 -0300
+Subject: [PATCH] Add full website with GitHub Pages workflow
+
+---
+ .github/workflows/pages.yml | 35 +++++++++++++++++++++++++
+ README.md                   | 15 +++++++++++
+ index.html                  | 50 ++++++++++++++++++++++++++++++++
+ script.js                   | 15 +++++++++++
+ styles.css                  | 70 ++++++++++++++++++++++++++++++++++++++++++++
+ assets/logo.png              | Bin 0 -> XXX bytes
+ assets/og-cover.png          | Bin 0 -> 0 bytes
+ 7 files changed, 185 insertions(+)
+ create mode 100644 .github/workflows/pages.yml
+ create mode 100644 README.md
+ create mode 100644 index.html
+ create mode 100644 script.js
+ create mode 100644 styles.css
+ create mode 100644 assets/logo.png
+ create mode 100644 assets/og-cover.png
+
+diff --git a/.github/workflows/pages.yml b/.github/workflows/pages.yml
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/.github/workflows/pages.yml
+@@
++name: Deploy to GitHub Pages
++
++on:
++  push:
++    branches: [ "main", "master" ]
++  workflow_dispatch:
++
++permissions:
++  pages: write
++  id-token: write
++  contents: read
++
++jobs:
++  deploy:
++    runs-on: ubuntu-latest
++    steps:
++      - name: Checkout repository
++        uses: actions/checkout@v4
++
++      - name: Upload site artifact
++        uses: actions/upload-pages-artifact@v1
++        with:
++          path: '.'
++
++      - name: Deploy to GitHub Pages
++        uses: actions/deploy-pages@v1
